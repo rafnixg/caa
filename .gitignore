@@ -13,9 +13,11 @@ __pycache__/
 # venv
 env
 venv
+.env
 
 # other
 .DS_Store
+.vscode
 
 # sphinx docs 
 _build
