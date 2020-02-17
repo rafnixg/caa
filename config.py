@@ -1,24 +1,27 @@
 # -*- encoding: utf-8 -*-
 """
-License: MIT
+License: MIT.
+
 Copyright (c) 2019 - present AppSeed.us
 """
 
 import os
-from   os import environ
+from os import environ
+
 
 class Config(object):
+    """Config Base."""
 
-    basedir    = os.path.abspath(os.path.dirname(__file__))
+    basedir = os.path.abspath(os.path.dirname(__file__))
 
     SECRET_KEY = 'key'
 
     # This will create a file in <app> FOLDER
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')  # noqa
 
     # For 'in memory' database, please use:
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-            
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # THEME SUPPORT
@@ -30,6 +33,8 @@ class Config(object):
 
 
 class ProductionConfig(Config):
+    """Poroduction config."""
+
     DEBUG = False
 
     # Security
@@ -39,15 +44,17 @@ class ProductionConfig(Config):
 
     # PostgreSQL database
     SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
-        environ.get('APPSEED_DATABASE_USER', 'appseed'),
-        environ.get('APPSEED_DATABASE_PASSWORD', 'appseed'),
-        environ.get('APPSEED_DATABASE_HOST', 'db'),
-        environ.get('APPSEED_DATABASE_PORT', 5432),
-        environ.get('APPSEED_DATABASE_NAME', 'appseed')
+        environ.get('DATABASE_USER', 'caa'),
+        environ.get('DATABASE_PASSWORD', 'caa'),
+        environ.get('DATABASE_HOST', 'db'),
+        environ.get('DATABASE_PORT', 5432),
+        environ.get('DATABASE_NAME', 'caa')
     )
 
 
 class DebugConfig(Config):
+    """Debug Config."""
+
     DEBUG = True
 
 

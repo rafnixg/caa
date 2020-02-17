@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 """
-License: MIT
+License: MIT.
+
 Copyright (c) 2019 - present AppSeed.us
 """
 
@@ -16,18 +17,20 @@ login_manager = LoginManager()
 
 
 def register_extensions(app):
+    """Extensions."""
     db.init_app(app)
     login_manager.init_app(app)
 
 
 def register_blueprints(app):
+    """Blueprints."""
     for module_name in ('base', 'home'):
         module = import_module('app.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 
 
 def configure_database(app):
-
+    """DB configuration."""
     @app.before_first_request
     def initialize_database():
         db.create_all()
@@ -38,6 +41,7 @@ def configure_database(app):
 
 
 def configure_logs(app):
+    """Log configuration."""
     # soft logging
     try:
         basicConfig(filename='error.log', level=DEBUG)
@@ -71,13 +75,14 @@ def apply_themes(app):
             themename = values.get('theme', None) or \
                 app.config.get('DEFAULT_THEME', None)
             if themename:
-                theme_file = "{}/{}".format(themename, values.get('filename', ''))
+                theme_file = "{}/{}".format(themename, values.get('filename', ''))  # noqa
                 if path.isfile(path.join(app.static_folder, theme_file)):
                     values['filename'] = theme_file
         return url_for(endpoint, **values)
 
 
 def create_app(config, selenium=False):
+    """Main app."""
     app = Flask(__name__, static_folder='base/static')
     app.config.from_object(config)
     if selenium:
