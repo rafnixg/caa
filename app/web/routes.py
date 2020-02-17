@@ -5,21 +5,22 @@ License: MIT.
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from app.home import blueprint
+from app.web import blueprint
 from flask import render_template  # redirect, url_for
 from flask_login import login_required  # current_user
 # from app import login_manager
 # from jinja2 import TemplateNotFound
 
 
-@blueprint.route('/index')
+@blueprint.route('/')
 @login_required
 def index():
     """Index page."""
-    # if not current_user.is_authenticated:
-    #    return redirect(url_for('base_blueprint.login'))
+    data = {
+        'title': '6to Foro latinoamericano',
+    }
 
-    return render_template('index.html')
+    return render_template('index.html', **data)
 
 
 # @blueprint.route('/<template>')
