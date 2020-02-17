@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="42px" viewBox="0 0 62 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>material-icon-cloud_upload</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Escritorio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Datos-estudiante" transform="translate(-652.000000, -1606.000000)">
+            <g id="Formulario" transform="translate(243.000000, 640.000000)">
+                <g transform="translate(0.000000, 134.000000)" id="form">
+                    <g transform="translate(219.000000, 806.000000)">
+                        <g id="upload-field" transform="translate(0.000000, 0.384248)">
+                            <g id="material-icon-cloud_upload" transform="translate(190.305556, 15.912736)">
+                                <polygon id="Path" points="0 0 61.3888889 0 61.3888889 61.2028302 0 61.2028302"></polygon>
+                                <path d="M49.4947917,25.603184 C47.7554398,16.8052771 40.0050926,10.2004717 30.6944444,10.2004717 C23.3021991,10.2004717 16.8819444,14.3826651 13.6846065,20.5029481 C5.98541667,21.3189858 0,27.8217866 0,35.7016509 C0,44.1425413 6.8806713,51.0023585 15.3472222,51.0023585 L48.599537,51.0023585 C55.6592593,51.0023585 61.3888889,45.2900943 61.3888889,38.2517689 C61.3888889,31.5194575 56.1452546,26.0622052 49.4947917,25.603184 Z M35.8101852,33.151533 L35.8101852,43.3520047 L25.5787037,43.3520047 L25.5787037,33.151533 L17.9050926,33.151533 L30.6944444,20.4009434 L43.4837963,33.151533 L35.8101852,33.151533 Z" id="Shape" fill="#003563" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

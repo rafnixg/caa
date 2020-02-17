@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="28px" viewBox="0 0 40 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>credit-card</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Escritorio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pago" transform="translate(-196.000000, -882.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="Metodos-de-pago" transform="translate(77.000000, 641.000000)">
+                <g id="metodos-de-pago" transform="translate(0.000000, 208.000000)">
+                    <g id="credit-card" transform="translate(45.000000, 0.000000)">
+                        <g id="icon" transform="translate(40.000000, 32.000000)">
+                            <g id="credit-card" transform="translate(34.000000, 0.000000)">
+                                <path d="M8.51152074,19 L13.4884793,19 C14.3364055,19 15,18.3333333 15,17.4814815 C15,16.6296296 14.3364055,16 13.4884793,16 L8.51152074,16 C7.66359447,16 7,16.6666667 7,17.5185185 C7,18.3703704 7.70046083,19 8.51152074,19 Z" id="Path"></path>
+                                <path d="M38.5886403,1 L1.44578313,1 C0.65404475,1 0.0344234079,1.62299135 0.0344234079,2.41903585 L0.0344234079,11.2447466 C0,11.3485785 0,11.4524104 0,11.5562423 C0,11.6600742 0,11.7639061 0.0344234079,11.8677379 L0.0344234079,27.5809642 C0.0344234079,28.3770087 0.65404475,29 1.44578313,29 L38.5886403,29 C39.3803787,29 40,28.3770087 40,27.5809642 L40,2.41903585 C40,1.65760198 39.3803787,1 38.5886403,1 Z M37.1772806,26.1965389 L2.85714286,26.1965389 L2.85714286,12.9752781 L37.1772806,12.9752781 L37.1772806,26.1965389 Z M37.1772806,10.1718171 L2.85714286,10.1718171 L2.85714286,3.83807169 L37.1772806,3.83807169 L37.1772806,10.1718171 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

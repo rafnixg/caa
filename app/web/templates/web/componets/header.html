@@ -1,0 +1,58 @@
+<header class="header">
+    <nav class="nav">
+        <div id="menu" class="menu">
+            <span class="menu-item"></span>
+            <span class="menu-item"></span>
+            <span class="menu-item"></span>
+            <p>Menú</p>
+        </div>
+        <ul id="navbar" class="navigation-bar">
+            <li id="close" class="close-x">X</li>
+            <li class="brands">
+                <p class="top-text organize">Organiza</p>
+                    <a target="_blank" href="https://www.clinicaangloamericana.pe/">
+                <div>
+                        <img src="{{ url_for('.static', filename='web/assets/img/brands/logo_caa.svg') }}" alt="Clínica Anglo Americana" class="logo logo-caa">
+                </div>
+                    </a>
+                    <a target="_blank" href="https://www.einstein.br/es/Pages/Home.aspx">
+                <div>
+                    <img src="{{ url_for('.static', filename='web/assets/img/brands/logo_ae.svg') }}" alt="Albert Einstein" class="logo logo-ae">
+                </div>
+                    </a>
+                    <a target="_blank" href="http://www.ihi.org/">
+                <div>
+                    <img src="{{ url_for('.static', filename='web/assets/img/brands/logo_ihi.svg') }}" alt="Institude of Healthcare Improvement" class="logo logo-ihi">
+                </div>
+                    </a>
+                <p class="top-text alliance">En alianza con</p>
+                <!--<a href="/" class="dark">
+                </a>-->
+            </li>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            <li>
+                <a href="/#expositors">Expositores</a>
+            </li>
+            <li>
+                <a href="/#schedule">Programa</a>
+            </li>
+            <li>
+                <a href="/stay">Información<br>Turística</a>
+            </li>
+            <li>
+                <a href="/papers">Trabajos de<br>Investigación</a>
+            </li>
+            <!-- <li>
+                <a href="site">Lugar</a>
+            </li> -->
+            <li>
+                <a href="#" data-toggle="modal" data-target="#typeModal" class="dark">
+                    Inscripción
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>

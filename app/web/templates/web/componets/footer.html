@@ -1,0 +1,164 @@
+<div class="modal fade" id="ticketsModal" tabindex="-1" role="dialog" aria-labelledby="ticketsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="ff-axia fw-normal fs-30" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="tickets" action="">
+                        <p>Número de entradas</p>
+                        <div class="d-flex justify-content-center align-items-center my-4">
+                            <button id="removeTicket" type="button" class="btn counter">-</button>
+                            <input type="number" id="tickets" class="form-control" value="1" min="1">
+                            <button id="addTicket" type="button" class="btn counter">+</button>
+                        </div>
+                        <p>Días a asistir </p>
+                        <div class="my-4">
+                            <div class="custom-control custom-checkbox custom-control-inline px-3">
+                                <input type="checkbox" id="twentyEight" name="date1" class="custom-control-input">
+                                <label class="custom-control-label" for="twentyEight">28</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline px-3">
+                                <input type="checkbox" id="twentyNine" name="date2" class="custom-control-input">
+                                <label class="custom-control-label" for="twentyNine">29</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline px-3">
+                                <input type="checkbox" id="thirty" name="date3" class="custom-control-input">
+                                <label class="custom-control-label" for="thirty">30</label>
+                            </div>
+                        </div>
+                        <p>Agregar entradas</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark mr-4" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn dark" data-dismiss="modal" data-toggle="modal"
+                        data-target="#typeModal">
+                        Siguiente
+                        <i class="flaticon-arrow-point-to-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="typeModal" tabindex="-1" role="dialog" aria-labelledby="typeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="ff-axia fw-normal fs-30" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="types" class="types">
+                        <li data-value="generic">
+                            <p>General</p>
+                            <img src="{{ url_for('.static', filename='web/assets/img/icon/man.svg') }}" alt="General" width="80px" height="100px">
+                        </li>
+                        <li data-value="student">
+                            <p>Estudiante</p>
+                            <img src="{{ url_for('.static', filename='web/assets/img/icon/cap.svg') }}" alt="Estudiante" width="100px">
+                        </li>
+                        <li data-value="delegate">
+                            <p>Enfermera(o)</p>
+                            <img src="{{ url_for('.static', filename='web/assets/img/icon/nurse.svg') }}" alt="Enfermera" width="100px">
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark mr-4" data-dismiss="modal">Cancelar</button>
+                    <a class="btn dark" href="/register">
+                        Siguiente
+                        <i class="flaticon-arrow-point-to-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+    <div class="container-fluid text-center text-md-left">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="social m-auto m-md-0">
+                    <p class="ff-axia fs-23 fc-white mt-5 mt-md-3 mb-5">
+                        Redes Sociales
+                    </p>
+                    <div class="social-networks">
+                        <a href="#">
+                            <i class="flaticon-facebook-logo mr-3"></i>
+                        </a>
+                        <a href="#">
+                            <i class="flaticon-twitter mr-3"></i>
+                        </a>
+                        <a href="#">
+                            <i class="flaticon-linkedin"></i>
+                        </a>
+                    </div>
+                    <p class="fs-13 fw-medium fc-white opacity-4 mt-4">© 2019 Clínica Anglo Americana</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="contact m-auto">
+                    <p class="ff-axia fs-23 fc-white mt-5 mt-md-3 mb-5">Contacto</p>
+                    <ul class="fs-13 fw-medium fc-white opacity-4">
+                        <li class="mb-2">foro2020@angloamericana.com.pe</li>
+                        <li class="mb-2">Teléfono : 610 7272 (opción 1)</li>
+                        <li><a href="/contact" class="fc-white fw-bold">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-5 mb-md-0">
+                <div class="newsletter m-auto ml-md-auto">
+                    <p class="ff-axia fs-23 fc-white mt-5 mt-md-3 mb-5">Auspicios</p>
+                    <p class="fs-12 fw-medium fc-white opacity-4 lh-15 my-4">
+                        Conoce más de nuestros paquetes de auspicios.<br><br>
+                        <a href="#" data-toggle="modal" data-target="#auspiciosModal" class="fc-white fw-bold">Contáctanos</a>
+                    </p>
+                    <div class="meftah">
+                        <a href="http://meftahstudio.com"><img src="{{ url_for('.static', filename='web/assets/img/meftah.png') }}" alt="Developed by Meftah"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="auspiciosModal" tabindex="-1" role="dialog" aria-labelledby="auspiciosModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="ff-axia fw-normabsoluteal fs-30" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="auspicios" action="">
+                        <div class="form-group row justify-content-md-center">
+                            <div class="col-9 mb-5">
+                                <label for="greeting">Nombre</label>
+                                <input type="text" id="name" class="form-control" required="true">
+                            </div>
+                            <div class="col-9 mb-5">
+                                <label for="name">Empresa</label>
+                                <input type="text" id="company" class="form-control" required="true">
+                            </div>
+                            <div class="col-9">
+                                <label for="name">Correo</label>
+                                <input type="email" id="email" class="form-control" required="true">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAuspicios" type="button" class="btn dark" data-dismiss="modal" aria-label="Close">
+                        Enviar
+                        <i class="flaticon-arrow-point-to-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,216 @@
+{% extends "web/layout.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+{% block content %}
+<section class="home">
+    <section class="main background">
+        <div class="main-text d-flex flex-wrap justify-content-center align-items-center">
+            <div class="mr-lg-5">
+                <p class="ff-axia fs-27">
+                    6º Foro Latinoamericano de
+                </p>
+                <p class="ff-axia-bold fs-39">
+                    Calidad y Seguridad <br>
+                    en la Salud
+                </p>
+            </div>
+            <div class="mt-4 mt-lg-0">
+                <p class="ff-axia-bold fs-35">
+                    <span class="mr-2">Preforo 28</span>
+                    <span>Foro 29 y 30</span>
+                </p>
+                <p class="ff-axia fs-35">
+                    Septiembre <span class="ff-axia=bold">2020</span>
+                </p>
+                <p class="ff-axia fs-30">Westin Lima Hotel</p>
+            </div>
+        </div>
+        <div class="my-4">
+            <a href="#" data-toggle="modal" data-target="#typeModal" class="btn light">
+                Inscripción
+                <i class="flaticon-arrow-point-to-right"></i>
+            </a>
+        </div>
+    </section>
+    <!--<section class="countdown">
+        <ul class="timer">
+            <li>
+                <p>Days</p>
+                <p>50</p>
+            </li>
+            <li>
+                <p>Hours</p>
+                <p>150</p>
+            </li>
+            <li>
+                <p>Minutes</p>
+                <p>1150</p>
+            </li>
+        </ul>
+    </section>-->
+    <section class="about container">
+        <div class="row">
+            <div class="col-12 col-md-6 m-auto">
+                <h2 class="gold-title mb-0">Sobre el congreso</h2>
+                <h3 class="twilight-blue-subtitle mt-4 mb-5">
+                    Bienvenido al
+                    6º Foro Latinoamericano
+                    de Calidad y Seguridad
+                    en la Salud
+                </h3>
+                <p class="fs-15 fc-grey">
+                    En su 6ta edición, el Foro Latinoamericano de Calidad y Seguridad en la Salud, tiene como principal misión, atraer a líderes y profesionales del sector de la región y el mundo, para discutir temas de relevancia para la transformación sanitaria y el desarrollo de un sistema sostenible.
+                </p>
+                <a href="/contact" class="btn dark mt-5 mb-5 mb-md-0">
+                    Contactar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 text-center d-flex justify-content-center align-items-center">
+                <div class="video-container">
+                    <!--<div id="play" class="play">
+                        <div class="icon"></div>
+                    </div>-->
+                    <!--<video id="video" class="video" cotrols poster="img/backgrounds/video-poster.jpg">
+                        <source src="https://www.youtube.com/watch?time_continue=1&v=gq_aPTmLxF8&feature=emb_logo" />
+                        Tu navegador no admite el elemento <code>video</code>.
+                    </video>-->
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/gq_aPTmLxF8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="schedule container pt-0" id="schedule">
+        <h2 class="twilight-blue-title mb-0">Programa</h2>
+        <div class="days my-4">
+
+            {%for schedule in schedules %}
+                {% for data in schedule.data %}
+
+                    <div class="day">
+                        <div class="name" data-toggle="collapse" data-target="#{{ data.class }}" aria-expanded="false"
+                            aria-controls="{{ data.class }}">
+                            <p class="fs-22 fc-twilight-blue text-center">{{data.description}}</p>
+                            <p class="fs-16 fc-twilight-blue text-center">{{ data.date }}</p>
+                        </div>
+                        <div class="collapse <%= i === 0 ? 'show' : '' %>" id="{{ data.class }}">
+                            {% for session in data.sessions %}
+                                <div class="time {{ data.class }}">
+                                    <p class="fs-20 fc-medium fc-white">{{ session.name }}</p>
+                                    <p class="fs-15 fc-medium fc-white">{{ session.room }}</p>
+                                    <p class="fs-15 fc-medium fc-white">{{ session.hour }}</p>
+                                </div>
+                            {% endfor %}
+                                <!--<div class="description">
+                                    <p class="fs-15 fc-medium"><%= session.description %></p>
+                                </div>-->
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <a href="/schedule" class="btn dark">
+                Ver todo el programa
+                <i class="flaticon-arrow-point-to-right"></i>
+            </a>
+        </div>
+    </section>
+        <section class="expositors" id="expositors">
+        <div class="container py-0">
+            <h2 class="twilight-blue-title pb-4 mb-0">Principales Expositores</h2>
+        </div>
+        <div class="trama mx-4 mb-5">
+            <div id="carouselExpositors" class="carousel slide" data-ride="carousel" pause="hover">
+                <div class="carousel-inner p-4">
+                    {% for array in expositors[0].data%}
+                        {% set outer_loop = loop %}
+                        {% for expositor in array%}
+                            <div class="carousel-item {{ 'active' if outer_loop.first and loop.first else '' }}">
+                                <div class="slider">
+                                    <div class="py-4 px-md-5">
+                                        <p class="fs-34 fw-bold fc-white mt-2">{{ expositor.firstName }}</p>
+                                        <p class="fs-34 fw-bold fc-white mb-2">{{ expositor.lastName }}</p>
+                                        <p class="blue-title mb-0">{{ expositor.position }}</p>
+                                        <p class="fs-12 fw-medium fc-white my-4">
+                                            {{ expositor.description }}
+                                        </p>
+                                        <a href="/expositors" class="btn light mt-3 mx-auto">
+                                            Ver todos los expositores
+                                            <i class="flaticon-arrow-point-to-right"></i>
+                                        </a>
+                                    </div>
+                                    <div class="text-center">
+                                        <img class="" src="{{ url_for('.static', filename='web/assets/'+expositor.img_home) }}"
+                                            alt="{{ expositor.firstName }} {{ expositor.lastName }}" width="100%" height="300px">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            <a class="carousel-control-prev" href="#carouselExpositors" role="button" data-slide="prev">
+                <i class="flaticon-arrow-point-to-right rotate"></i>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExpositors" role="button" data-slide="next">
+                <i class="flaticon-arrow-point-to-right"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        </div>
+    </section>
+    <section class="inversion mb-5">
+        <div class="container pb-4">
+            <h2 class="twilight-blue-title mb-0">Inversión</h2>
+        </div>
+        <div class="data-container mx-lg-5">
+            <div class="m-auto">
+                <div class="data-row head">
+                    {% for text in inversion.head %}
+                        <div class="data-col">
+                            <p>{{ text|safe }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% for item in inversion.body %}
+                    <div class="data-row">
+                        {% for val,i in item.items() %}
+                            <div class="data-col">
+                                <p>{{i|safe}}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="know-us background trama">
+        <div class="title-with-stroke text-center">
+            <p>No te pierdas Lima</p>
+        </div>
+        <a href="/stay" class="btn light mx-auto my-4">
+            Ver más
+            <i class="flaticon-arrow-point-to-right"></i>
+        </a>
+    </section>
+    <section class="sponsors container">
+        <h2 class="twilight-blue-title pb-4 mb-0">Auspiciadores</h2>
+        {% for sponsor_data in sponsors%}
+            {% if sponsor_data|length > 0 %}
+        <div class="text-center">
+            <p class="fs-30 fw-semi-bold fc-twilight-blue my-5 text-uppercase">{{ sponsorTypes[loop.index-1] }}</p>
+            <div class="item">
+                {% for sponsor in sponsor_data%}
+                <img class="sponsor" style="max-height:{{ 70 - ((loop.index-1)*2)}}px;" src="{{ url_for('.static', filename='web/assets/'+sponsor.src)  }}" alt="{{ sponsor.name }}">
+                {% endfor %}
+            </div>
+            <div class="divider my-4"></div>
+        </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+</section>
+<script src="{{ url_for('.static', filename='web/assets/js/home.js')  }}"></script>
+{% endblock content %}
