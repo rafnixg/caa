@@ -216,5 +216,7 @@
         {% endfor %}
     </section>
 </section>
-<script src="{{ url_for('.static', filename='web/assets/js/home.js')  }}"></script>
 {% endblock content %}
+{% block javascripts%}
+<script src="{{ url_for('.static', filename='web/assets/js/home.js')  }}"></script>
+{% endblock javascripts%}

@@ -808,25 +808,6 @@ footer {
   .home .main p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
 
-.home .types {
-  display: flex;
-  justify-content: center; }
-  .home .types li {
-    flex: 1;
-    max-width: 150px;
-    padding: 1rem;
-    margin: 0 1rem;
-    border-radius: 15px;
-    cursor: pointer; }
-    .home .types li.active {
-      background-color: #003563; }
-      .home .types li.active p {
-        color: #ffffff !important; }
-      .home .types li.active img {
-        filter: invert(1); }
-    .home .types li p {
-      margin-bottom: 1rem; }
-
 .home .countdown {
   margin-top: -100px; }
   .home .countdown .timer {
@@ -877,7 +858,7 @@ footer {
     /*&.in {
                     animation: fade-in 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
                 }
-    
+
                 &.out {
                     animation: fade-out 0.3s ease-out both;
                 }*/ }
@@ -1014,6 +995,25 @@ footer {
       margin-bottom: 0; }
     .home .schedule .days .collapse {
       display: block !important; } }
+
+.types {
+  display: flex;
+  justify-content: center; }
+  .types li {
+    flex: 1;
+    max-width: 150px;
+    padding: 1rem;
+    margin: 0 1rem;
+    border-radius: 15px;
+    cursor: pointer; }
+    .types li.active {
+      background-color: #003563; }
+      .types li.active p {
+        color: #ffffff !important; }
+      .types li.active img {
+        filter: invert(1); }
+    .types li p {
+      margin-bottom: 1rem; }
 
 .expositors .background {
   background-image: url("../img/backgrounds/expositors.jpg"); }
