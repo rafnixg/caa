@@ -30,7 +30,9 @@ def index():
         'sponsors': sponsors_demo(),
         'schedules': schedules_demo(),
         'expositors': expositors_demo(),
-        'inversion': inversion_demo()
+        'inversion': inversion_demo(),
+        'is_schedules': False,
+        'is_counter': False,
     }
 
     return render_template('web/index.html', **data)

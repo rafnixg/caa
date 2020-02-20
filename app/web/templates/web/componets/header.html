@@ -26,8 +26,6 @@
                 </div>
                     </a>
                 <p class="top-text alliance">En alianza con</p>
-                <!--<a href="/" class="dark">
-                </a>-->
             </li>
             <li>
                 <a href="/">Inicio</a>
@@ -35,18 +33,17 @@
             <li>
                 <a href="/#expositors">Expositores</a>
             </li>
+            {% if is_schedules %}
             <li>
                 <a href="/#schedule">Programa</a>
             </li>
+            {% endif %}
             <li>
                 <a href="/stay">Información<br>Turística</a>
             </li>
             <li>
                 <a href="/papers">Trabajos de<br>Investigación</a>
             </li>
-            <!-- <li>
-                <a href="site">Lugar</a>
-            </li> -->
             <li>
                 <a href="#" data-toggle="modal" data-target="#typeModal" class="dark">
                     Inscripción
