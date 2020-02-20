@@ -36,6 +36,40 @@ def index():
     return render_template('web/index.html', **data)
 
 
+@blueprint.route('/expositors')
+def expositors():
+    """Expositor views."""
+    data = {
+        'expositors': expositors_demo()
+    }
+    return render_template('web/expositors.html', **data)
+
+
+@blueprint.route('/contact')
+def contact():
+    """Contact view."""
+    return render_template('web/contact.html')
+
+
+@blueprint.route('/schedule')
+def schedule():
+    """Schedule view."""
+    data = {
+        'schedule': schedules_demo()
+    }
+    return render_template('web/schedule.html', **data)
+
+
+@blueprint.route('/stay')
+def stay():
+    """Stay view."""
+    return render_template('web/stay.html')
+
+
+@blueprint.route('/papers')
+def papers():
+    """Paper view."""
+    return render_template('web/papers.html')
 # @blueprint.route('/<template>')
 # def route_template(template):
 #     """Template route's."""

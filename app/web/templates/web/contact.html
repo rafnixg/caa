@@ -1,0 +1,51 @@
+{% extends "web/layout.html" %}
+
+{% block title %} Contacto {% endblock %}
+
+{% block content %}
+<section class="contact">
+    <section class="background view trama right">
+        <h1 class="title-with-stroke">
+            <span>Contacto</span>
+        </h1>
+    </section>
+    <section class="diary trama">
+        <div class="container ">
+            <!--<h2 class="gold-title mb-0">Agenda</h2>-->
+            <h3 class="twilight-blue-subtitle">
+                ¡Contáctanos! <br>
+
+            </h3>
+            <div class="days my-5">
+                <form name="data" action="">
+        <div class="form-group row mb-4">
+            <div class="col-12 col-md-6 mb-4">
+                <label for="name">Nombre y Apellido</label>
+                <input type="text" id="name" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="phone">Teléfono</label>
+                <input type="phone" id="phone" class="form-control">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="organizacion">Organización</label>
+                <input type="text" id="organizacion" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="mensaje">Mensaje</label>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="10" class="form-control" required="true"></textarea>
+            </div>
+        </div>
+        <div class="form-group row student">
+            <button class="btn dark save-file mt-4">Enviar</button>
+        </div>
+    </form>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock content %}

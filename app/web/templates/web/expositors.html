@@ -1,0 +1,104 @@
+{% extends "web/layout.html" %}
+
+{% block title %} Expositores {% endblock %}
+
+{% block content %}
+<section class="expositors">
+    <section class="background view trama right">
+        <h1 class="title-with-stroke">
+            <span></span>
+            <span>Expositores</span>
+        </h1>
+    </section>
+    <section class="guests trama">
+        <div class="container">
+            <!--<h2 class="gold-title mb-0">Invitados</h2>-->
+            <h3 class="twilight-blue-subtitle">
+                Nuestros expositores
+
+            </h3>
+            <div>
+                <ul class="buttons nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="btn light" id="keynote-tab" data-toggle="tab" href="#keynote" role="tab"
+                            aria-controls="keynote" aria-selected="false">
+                            Keynote Speaker
+                            <i class="flaticon-arrow-point-to-right"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn light" id="speaker-tab" data-toggle="tab" href="#speaker" role="tab"
+                            aria-controls="speaker" aria-selected="false">
+                            Speaker
+                            <i class="flaticon-arrow-point-to-right"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn light" id="panelista-tab" data-toggle="tab" href="#panelista" role="tab"
+                            aria-controls="panelista" aria-selected="false">
+                            Panelista
+                            <i class="flaticon-arrow-point-to-right"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn light" id="moderador-tab" data-toggle="tab" href="#moderador" role="tab"
+                            aria-controls="moderador" aria-selected="false">
+                            Moderador
+                            <i class="flaticon-arrow-point-to-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="lists tab-content" id="myTabContent">
+                {% for item in expositors %}
+                    <div class="tab-pane fade {{'show active' if loop.index-1 == 0 else ''}}" id="{{ item.tab }}" role="tabpanel" aria-labelledby="{{ item.tab }}-tab">
+                        {% for arr in item.data %}
+                            <div class="expositors-list">
+                                {% for expositor in arr %}
+                                    <div data-toggle="modal" data-target="#modal{{ expositor.firstName }}" class="expositor pointer" style="background-image: url('{{url_for('.static', filename='web/assets/'+expositor.img_bio)}}');">
+                                        <div>
+                                            <p class="name">{{expositor.firstName}}</p>
+                                            <p class="name">{{ expositor.lastName}}</p>
+                                            <p class="position">{{ expositor.position}}</p>
+                                        </div>
+                                        <div class="social-networks mt-auto">
+                                            <a href="{{ expositor.twitter }}">
+                                                <i class="flaticon-twitter mr-3"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div>
+        {%for item in expositors%}
+            {%for arr in item.data %}
+                {%for expositor in arr%}
+                    <div class="modal fade" id="modal{{expositor.firstName}}" bindex="-1" role="dialog" aria-labelledby="modal{{ expositor.firstName  }}bel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span class="ff-axia fw-normal fs-30" aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-left">
+                                    <p class="gold-title fs-30">{{ expositor.firstName }} {{ expositor.lastName }}</p>
+                                    <p class="ff-axia fc-twilight-blue fc-24 mb-4">{{ expositor.position }}</p>
+                                    <p class="fs-14">{{ expositor.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
