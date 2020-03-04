@@ -131,6 +131,7 @@
                     {% for array in expositors[0].data%}
                         {% set outer_loop = loop %}
                         {% for expositor in array%}
+                        {% if expositor.img_home != ''%}
                             <div class="carousel-item {{ 'active' if outer_loop.first and loop.first else '' }}">
                                 <div class="slider">
                                     <div class="py-4 px-md-5">
@@ -151,6 +152,7 @@
                                     </div>
                                 </div>
                             </div>
+                        {% endif %}
                         {% endfor %}
                     {% endfor %}
                 </div>
