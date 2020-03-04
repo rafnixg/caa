@@ -5,7 +5,7 @@ License: MIT.
 Copyright (c) 2019 - present AppSeed.us
 """
 import base64
-from os import environ
+import os
 import requests
 import json
 from pprint import pprint
@@ -166,13 +166,13 @@ def info():
 def payment():
     """Payment page."""
     client_id = session.get('client_id')
-    if client_id:
-        if request.method == 'GET':
+    if request.method == 'GET':
+        if client_id:
             # Payzen init
-            username = environ.get('PAYZEN_USERNAME')
-            password = environ.get('PAYZEN_PASSWORD')
-            base_url = environ.get('PAYZEN_URL')
-            public_key = environ.get('PAYZEN_PUBLIC_KEY')
+            username = os.getenv('PAYZEN_USERNAME')
+            password = os.getenv('PAYZEN_PASSWORD')
+            base_url = os.getenv('PAYZEN_URL')
+            public_key = os.getenv('PAYZEN_PUBLIC_KEY')
             base64string = base64.encodebytes(('%s:%s' % (username, password)).encode('utf8')).decode('utf8').replace('\n', '')  # noqa
             headers = {
                 'content-type': 'application/json',
@@ -184,15 +184,8 @@ def payment():
 
             tickets_price_total = client.ticket_price_total()
 
-            data = {
-                'title': '6to Foro latinoamericano',
-                'tickets': tickets_data(),
-                'ticket_price_total': tickets_price_total,
-                'payzen_public_key': public_key
-            }
-
             payload = {
-                "amount": int(tickets_price_total),
+                "amount": 9000,
                 "currency": "PEN",
                 "orderId": "myOrderId-321979",
                 "customer": {
@@ -201,11 +194,21 @@ def payment():
             }
             r = requests.post(url, data=json.dumps(payload), headers=headers)
             formToken = r.json()['answer']['formToken']
+            data = {
+                'title': '6to Foro latinoamericano',
+                'tickets': tickets_data(),
+                'ticket_price_total': tickets_price_total,
+                'payzen_public_key': public_key,
+                'form_token': formToken,
+            }
 
             return render_template('register/payment.html', **data)
-        elif request.method == 'POST':
-            pprint(request)
-    return redirect(url_for('web_blueprint.index'))
+        else:
+            return redirect(url_for('web_blueprint.index'))
+    elif request.method == 'POST':
+        pprint(request.headers)
+        pprint(request.form)
+        return redirect(url_for('web_blueprint.index'))
 
 
 def _get_list(headers):
