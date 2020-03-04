@@ -1,7 +1,19 @@
 {% extends "register/layout.html" %}
 
 {% block title %} Register assistants {% endblock %}
+{% block css%}
+<script
+   src="https://static.payzen.lat/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
+   kr-public-key="{{payzen_public_key}}"
+   kr-post-url-success="/payment">
+</script>
 
+<link rel="stylesheet"
+  href="https://static.payzen.lat/static/js/krypton-client/V4.0/ext/classic-reset.css">
+ <script
+  src="https://static.payzen.lat/static/js/krypton-client/V4.0/ext/classic.js">
+ </script>
+{% endblock%}
 
 {% block form %}
 <div class="tab-pane fade active show" id="payment" role="tabpanel" aria-labelledby="payment-tab">
@@ -55,26 +67,21 @@
                     </div>
                 {% endfor %}
             </div>
-            <form action="" class="tdc-form">
-                <div class="form-group row">
-                    <div class="col-12 mb-4">
-                        <label for="fullName">Nombre completo</label>
-                        <input type="text" id="fullName" class="form-control" required="true">
-                    </div>
-                    <div class="col-12 mb-4">
-                        <label for="cardNumber">Número de tarjeta</label>
-                    <input type="text" id="cardNumber" class="form-control" placeholder="0000 0000 0000 0000" required="true">
-                    </div>
-                    <div class="col-12 col-md-6 mb-4">
-                        <label for="expiration">Fecha de expiración</label>
-                        <input type="text" id="expiration" class="form-control" placeholder="MM / AA" required="true">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label for="cvc">CVC</label>
-                        <input type="text" id="cvc" class="form-control" required="true">
-                    </div>
-                </div>
-            </form>
+            <!-- payment form -->
+              <div class="kr-embedded"
+               kr-form-token="DEMO-TOKEN-TO-BE-REPLACED">
+
+                <!-- payment form fields -->
+                <div class="kr-pan"></div>
+                <div class="kr-expiry"></div>
+                <div class="kr-security-code"></div>
+
+                <!-- payment form submit button -->
+                <button class="kr-payment-button"></button>
+
+                <!-- error zone -->
+                <div class="kr-form-error"></div>
+              </div>
         </div>
     </div>
 

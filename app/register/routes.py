@@ -8,7 +8,7 @@ import base64
 from os import environ
 import requests
 import json
-
+from pprint import pprint
 from app import db
 from app.register import blueprint
 from flask import render_template, redirect, url_for, request, session
@@ -167,40 +167,44 @@ def payment():
     """Payment page."""
     client_id = session.get('client_id')
     if client_id:
-        # Payzen init
-        username = environ.get('PAYZEN_USERNAME')
-        password = environ.get('PAYZEN_PASSWORD')
-        base_url = environ.get('PAYZEN_URL')
-        base64string = base64.encodebytes(('%s:%s' % (username, password)).encode('utf8')).decode('utf8').replace('\n', '')  # noqa
-        headers = {
-            'content-type': 'application/json',
-            'Authorization': 'Basic {}'.format(base64string)
-        }
-        url = "{}{}".format(base_url, 'Charge/CreatePayment')
-
-        client = Client.query.get(int(client_id))
-
-        tickets_price_total = client.ticket_price_total()
-
-        data = {
-            'title': '6to Foro latinoamericano',
-            'tickets': tickets_data(),
-            'ticket_price_total': tickets_price_total,
-        }
-
-        payload = {
-            "amount": int(tickets_price_total),
-            "currency": "PEN",
-            "orderId": "myOrderId-321979",
-            "customer": {
-                "email": "rafnixg@gmail.com"
+        if request.method == 'GET':
+            # Payzen init
+            username = environ.get('PAYZEN_USERNAME')
+            password = environ.get('PAYZEN_PASSWORD')
+            base_url = environ.get('PAYZEN_URL')
+            public_key = environ.get('PAYZEN_PUBLIC_KEY')
+            base64string = base64.encodebytes(('%s:%s' % (username, password)).encode('utf8')).decode('utf8').replace('\n', '')  # noqa
+            headers = {
+                'content-type': 'application/json',
+                'Authorization': 'Basic {}'.format(base64string)
             }
-        }
-        print(payload)
-        print(json.dumps(payload))
-        r = requests.post(url, data=json.dumps(payload), headers=headers)
-        print(r.json())
-        return render_template('register/payment.html', **data)
+            url = "{}{}".format(base_url, 'Charge/CreatePayment')
+
+            client = Client.query.get(int(client_id))
+
+            tickets_price_total = client.ticket_price_total()
+
+            data = {
+                'title': '6to Foro latinoamericano',
+                'tickets': tickets_data(),
+                'ticket_price_total': tickets_price_total,
+                'payzen_public_key': public_key
+            }
+
+            payload = {
+                "amount": int(tickets_price_total),
+                "currency": "PEN",
+                "orderId": "myOrderId-321979",
+                "customer": {
+                    "email": "rafnixg@gmail.com"
+                }
+            }
+            r = requests.post(url, data=json.dumps(payload), headers=headers)
+            formToken = r.json()['answer']['formToken']
+
+            return render_template('register/payment.html', **data)
+        elif request.method == 'POST':
+            pprint(request)
     return redirect(url_for('web_blueprint.index'))
 
 
