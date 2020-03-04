@@ -6,7 +6,8 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import os
-from os import environ
+from dotenv import load_dotenv
+load_dotenv()
 
 
 class Config(object):
@@ -44,11 +45,11 @@ class ProductionConfig(Config):
 
     # PostgreSQL database
     SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
-        environ.get('DATABASE_USER', 'caa'),
-        environ.get('DATABASE_PASSWORD', 'caa'),
-        environ.get('DATABASE_HOST', 'db'),
-        environ.get('DATABASE_PORT', 5432),
-        environ.get('DATABASE_NAME', 'caa')
+        os.getenv('DATABASE_USER', 'caa'),
+        os.getenv('DATABASE_PASSWORD', 'caa'),
+        os.getenv('DATABASE_HOST', 'db'),
+        os.getenv('DATABASE_PORT', 5432),
+        os.getenv('DATABASE_NAME', 'caa')
     )
 
 
