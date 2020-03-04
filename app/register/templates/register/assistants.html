@@ -1,0 +1,76 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register assistants {% endblock %}
+
+
+{% block form %}
+    <div class="tab-pane fade active show" id="assistants" role="tabpanel" aria-labelledby="assistants-tab">
+    <div class="mb-5">
+        <p class="grey-text">
+            Completa los siguientes campos <br>
+            sobre los asistentes al evento 
+        </p>
+        <p class="grey-text mt-4">(<span class="fc-red">*</span>) Campo obligatorio</p>
+    </div>
+    <div >
+        <form action="{{url_for('register_blueprint.assistants')}}" id="forms" method="POST" >
+            <div class="form-group row mb-4" name="assistantForm">
+                <div class="col-12 col-lg mb-4">
+                    <label for="agreeting">Saludo</label>
+                    <input type="text" name="greeting[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aname">Nombres</label>
+                    <input type="text" name="first_name[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="alastName">Apellidos</label>
+                    <input type="text" name="last_name[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aorganization">Empresa</label>
+                    <input type="text" name="company[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aposition">Cargo</label>
+                    <input type="text" name="position[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aaddress">Dirección</label>
+                    <input type="text" name="address[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aphone">Teléfono</label>
+                    <input type="text" name="phone[]" class="form-control" required="true">
+                </div>
+                <div class="col-12 col-lg mb-4">
+                    <label for="aemail">E-mail</label>
+                    <input type="text" name="email[]" class="form-control" required="true">
+                </div>
+                <input type="hidden" value='{{client_id}}' name='client_id'>
+            </div>
+        </form>
+    </div>
+    <div class="my-5">
+        <button id="addAssistant" class="btn light">
+            Agregar asistente
+            <i class="flaticon-arrow-point-to-right"></i>
+        </button>
+    </div>
+</div>
+
+        <div id="action-buttons" class="row mt-5">
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="/" class="btn dark">
+                    Cancelar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <button id="submitAssistant" class="btn dark" type="submit">
+                    Siguiente
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </button>
+            </div>
+        </div>
+{% endblock form %}

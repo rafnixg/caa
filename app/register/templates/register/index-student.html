@@ -1,0 +1,93 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register {% endblock %}
+
+
+{% block form %}
+    <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
+
+    <div class="row">
+        <div class="col-12 px-0">
+            <div class="mb-5">
+                <p class="grey-text">
+                    Completa los datos de la persona <br>
+                    encargada del registro
+                </p>
+                <p class="grey-text mt-4">(<span class="fc-red">*</span>) Campo obligatorio</p>
+            </div>
+        </div>
+    </div>
+    <form name="data" action="">
+        <div class="form-group row mb-4">
+            <div class="col-12 col-md-6 mb-4">
+                <label for="greeting">Saludo</label>
+                <input type="text" id="greeting" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="name">Nombres</label>
+                <input type="text" id="name" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="lastName">Apellidos</label>
+                <input type="text" id="lastName" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="organization">Organización</label>
+                <input type="text" id="organization" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="position">Cargo</label>
+                <input type="text" id="position" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="phone">Teléfono</label>
+                <input type="text" id="phone" class="form-control" required="true">
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" class="form-control" required="true">
+                <div class="mt-2 student generic">
+                    <span class="grey-text">Registrarse con el correo que le otorga la universidad</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row student generic">
+            <div class="col-12 px-0">
+                <p class="grey-text">Validar registro <span class="fc-red">*</span></p>
+                <p class="fw-bold fs-15 fc-grey my-4 text-center">Agregar Carnet de estudiante</p>
+                <p class="fs-17 fc-marine-blue my-4 text-center">Subir Archivos</p>
+            </div>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile03"
+                        aria-describedby="inputGroupFileAddon03">
+                    <label class="custom-file-label" for="inputGroupFile03">
+                        <img class="mb-3" src="/static/web/assets/img/icon/cloud.svg" alt="Cloud">
+                        Arrastre y suelte aquí
+                        o Buscar
+                    </label>
+                </div>
+            </div>
+            <button class="btn dark save-file mt-4">Guardar</button>
+        </div>
+        <div id="action-buttons" class="row mt-5">
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="/" class="btn dark">
+                    Cancelar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <button id="next" class="btn dark" type="submit">
+                    Siguiente
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock form %}

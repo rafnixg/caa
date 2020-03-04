@@ -1,0 +1,101 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register assistants {% endblock %}
+
+
+{% block form %}
+<div class="tab-pane fade active show" id="info" role="tabpanel" aria-labelledby="info-tab">
+    <form name="infoForm" action="{url_for('register_blueprint.info')}">
+        <div class="radios my-0 d-lg-flex justify-content-between">
+            <div class="radio" style="margin:0px;width:200px;">
+                <p class="grey-text">Nombres y apellidos</p>
+            </div>
+
+            <div class="radio" style="margin:0px;width:200px;">
+                <p class="grey-text">
+                    Participará en el <br>
+                    almuerzo del evento
+                </p>
+            </div>
+            <!--<div class="radio">
+                <p class="grey-text">
+                    Participará en el cótel<br>
+                    del evento
+                </p>
+                <div class="form-group">
+                    <div class="text-center">
+                        <div class="custom-control custom-radio custom-control-inline m-0">
+                            <input type="radio" id="cocktail" name="info" class="custom-control-input">
+                            <label class="custom-control-label" for="cocktail"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="radio" style="margin:0px;width:200px;">
+                <p class="grey-text">
+                    Vegetariano
+                </p>
+            </div>
+            <div class="radio" style="margin:0px;width:200px;">
+                <p class="grey-text">
+                    Celíaco
+                </p>
+            </div>
+        </div>
+        {% for assistant in assistants %}
+        <div class="radios my-0 d-lg-flex justify-content-between">
+            <div class="radio" style="margin:0px;width:200px;">
+                <p class="grey-text">{{assistant.first_name + " " + assistant.last_name }}</p>
+                <input type="hidden" name="assistant_id[]" value='{{assistant.id}}'/>
+
+            </div>
+
+            <div class="radio" style="margin:0px;width:200px;">
+                <div class="form-group">
+                    <div class="text-center">
+                        <div class="custom-control custom-checkbox custom-control-inline m-0">
+                            <input type="checkbox" id="lunch" name="lunch[]" class="custom-control-input">
+                            <label class="custom-control-label" for="lunch[]"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="radio" style="margin:0px;width:200px;">
+                <div class="form-group">
+                    <div class="text-center">
+                        <div class="custom-control custom-checkbox custom-control-inline m-0">
+                            <input type="checkbox" id="vegetarian" name="vegetarian[]" class="custom-control-input">
+                            <label class="custom-control-label" for="vegetarian"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="radio" style="margin:0px;width:200px;">
+                <div class="form-group">
+                    <div class="text-center">
+                        <div class="custom-control custom-checkbox custom-control-inline m-0">
+                            <input type="checkbox" id="celiac" name="celiac[]" class="custom-control-input">
+                            <label class="custom-control-label" for="celiac"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div id="action-buttons" class="row mt-5">
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="/" class="btn dark">
+                    Cancelar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <button id="next" class="btn dark" type="submit">
+                    Siguiente
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock form %}

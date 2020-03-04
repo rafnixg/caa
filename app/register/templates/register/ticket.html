@@ -1,0 +1,43 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register assistants {% endblock %}
+
+
+{% block form %}
+<div class="tab-pane fade active show" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
+    <form name="ticketForm" action="{{url_for('register_blueprint.tickets')}}" style='padding-top:40px;' method="POST"> 
+        {% for assistant in assistants%}
+        <div class="my-0 d-lg-flex justify-content-center">
+            <div style="min-width:200px;">
+                <p class="grey-text">{{assistant.first_name + " " + assistant.last_name}}</p>
+                <input type="hidden" name="assistant_id[]" value='{{assistant.id}}'/>
+            </div>
+            <div style='min-width:300px;'>
+                <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1" name="ticket_type[]">
+                        {% for ticket in tickets %}
+                            <option value="{{ticket.id}}">{{ticket.name}}</option>
+                        {% endfor %}
+                        </select>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div id="action-buttons" class="row mt-5">
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="/" class="btn dark">
+                    Cancelar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <button id="next" class="btn dark" type="submit">
+                    Siguiente
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock form %}

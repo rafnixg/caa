@@ -1,0 +1,85 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register {% endblock %}
+
+
+{% block form %}
+    <div class="tab-pane fade show active" id="data" role="tabpanel" aria-labelledby="data-tab">
+
+    <div class="row">
+        <div class="col-12 px-0">
+            <div class="mb-5">
+                <p class="grey-text">
+                    Completa los datos de la persona <br>
+                    encargada del registro
+                </p>
+                <p class="grey-text mt-4">(<span class="fc-red">*</span>) Campo obligatorio</p>
+            </div>
+        </div>
+    </div>
+    <form name="data" action="{{url_for('register_blueprint.index')}}" method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group row mb-4">
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.greeting.label }} <span class="fc-red">*</span>
+                {{ form.greeting(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.first_name.label }} <span class="fc-red">*</span>
+                {{ form.first_name(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.last_name.label }} <span class="fc-red">*</span>
+                {{ form.last_name(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.company.label }} <span class="fc-red">*</span>
+                {{ form.company(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.position.label }} <span class="fc-red">*</span>
+                {{ form.position(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.address.label }} <span class="fc-red">*</span>
+                {{ form.address(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.phone.label }} <span class="fc-red">*</span>
+                {{ form.phone(class='form-control') }}
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                {{ form.email.label }} <span class="fc-red">*</span>
+                {{ form.email(class='form-control') }}
+            </div>
+        </div>
+        <div class="form-group row my-5 delegate student">
+            <label for="assistant" class="col-12 col-md-6">Participaré como asistente de la conferencia</label>
+            <div class="col-12 col-md-6 text-center">
+                <div class="custom-control custom-radio custom-control-inline px-5">
+                    <input type="radio" id="yes" name="assistant" class="custom-control-input">
+                    <label class="custom-control-label" for="yes">Sí</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline px-5">
+                    <input type="radio" id="no" name="assistant" class="custom-control-input">
+                    <label class="custom-control-label" for="no">No</label>
+                </div>
+            </div>
+        </div>
+        <div id="action-buttons" class="row mt-5">
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="/" class="btn dark">
+                    Cancelar
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 mb-4 text-center">
+                <button id="next" class="btn dark" type="submit">
+                    Siguiente
+                    <i class="flaticon-arrow-point-to-right"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock form %}

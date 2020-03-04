@@ -1257,7 +1257,7 @@ footer {
   .register .payment .tab-content .radios {
     margin: 3rem 0; }
     .register .payment .tab-content .radios .radio {
-      margin: 3rem 0;
+      /* margin: 3rem 0; */
       text-align: center; }
       .register .payment .tab-content .radios .radio p:first-child {
         height: 38px;

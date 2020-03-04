@@ -24,7 +24,7 @@ def register_extensions(app):
 
 def register_blueprints(app):
     """Blueprints."""
-    for module_name in ('web', 'base'):
+    for module_name in ('web', 'register', 'base'):
         module = import_module('app.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 

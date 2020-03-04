@@ -55,11 +55,11 @@
                         {% for arr in item.data %}
                             <div class="expositors-list">
                                 {% for expositor in arr %}
-                                    <div data-toggle="modal" data-target="#modal{{ expositor.firstName }}" class="expositor pointer" style="background-image: url('{{url_for('.static', filename='web/assets/'+expositor.img_bio)}}');">
+                                    <div data-toggle="modal" data-target="#modal{{ expositor.firstName }}" class="expositor pointer" style="{{ 'visibility:hidden;' if expositor.firstName == '' else ''}}background-image: url('{{url_for('.static', filename='web/assets/'+expositor.img_bio)}}');">
                                         <div>
                                             <p class="name">{{expositor.firstName}}</p>
                                             <p class="name">{{ expositor.lastName}}</p>
-                                            <p class="position">{{ expositor.position}}</p>
+                                            {# <p class="position">{{ expositor.position}}</p> #}
                                         </div>
                                         <div class="social-networks mt-auto">
                                             <a href="{{ expositor.twitter }}">
@@ -90,8 +90,8 @@
                                 </div>
                                 <div class="modal-body text-left">
                                     <p class="gold-title fs-30">{{ expositor.firstName }} {{ expositor.lastName }}</p>
-                                    <p class="ff-axia fc-twilight-blue fc-24 mb-4">{{ expositor.position }}</p>
-                                    <p class="fs-14">{{ expositor.description }}</p>
+                                    {# <p class="ff-axia fc-twilight-blue fc-24 mb-4">{{ expositor.position }}</p> #}
+                                    <p class="fs-14">{{ expositor.full_description }}</p>
                                 </div>
                             </div>
                         </div>

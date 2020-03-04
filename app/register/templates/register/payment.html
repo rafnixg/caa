@@ -1,0 +1,83 @@
+{% extends "register/layout.html" %}
+
+{% block title %} Register assistants {% endblock %}
+
+
+{% block form %}
+<div class="tab-pane fade active show" id="payment" role="tabpanel" aria-labelledby="payment-tab">
+    <div class="row">
+        <div class="col-12 col-lg-4 mb-5">
+            <p class="fw-bold fs-30 fc-twilight-blue">
+                Método de pago
+            </p>
+            <ul class="payment-methods text-center">
+                <li class="payment-method">
+                    <img src="/static/web/assets/img/icon/credit-card.svg" alt="Tarjeta de crédito">
+                    <p class="fs-14 mt-3">Tarjeta de crédito</p>
+                </li>
+            </ul>
+        </div>
+        <div class="col-12 col-lg-8">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tickets-head">
+                        <p class="text">
+                            Tus entradas <span>{{ tickets | length }}</span>
+                        </p>
+                        <div class="line"></div>
+                        <p class="price">{{ ticket_price_total }} /.s</p>
+                    </div>
+                </div>
+                {% for ticket in tickets %}
+                    <div class="col-12 col-md-6 mb-5">
+                        <div class="ticket">
+                            <div class="text-center mr-4">
+                                {% for date in ticket.dates %}
+                                    <p class="fw-extra-light fs-27">{{date}}</p>
+                                {% endfor%}
+                                <p class="fw-extra-light fs-14">NOV</p>
+                            </div>
+                            <div>
+                                <p class="fw-medium fs-14 fc-twilight-blue">
+                                    6th Latin American Forum on <br>
+                                    Quality and Safety in Healthcare
+                                </p>
+                                <p class="fw-medium fs-12 fc-grey-b mt-4">
+                                    {{ ticket.service }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="fw-medium fs-14 fc-light-grey mt-5">
+                                {{ ticket.name }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <form action="" class="tdc-form">
+                <div class="form-group row">
+                    <div class="col-12 mb-4">
+                        <label for="fullName">Nombre completo</label>
+                        <input type="text" id="fullName" class="form-control" required="true">
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="cardNumber">Número de tarjeta</label>
+                    <input type="text" id="cardNumber" class="form-control" placeholder="0000 0000 0000 0000" required="true">
+                    </div>
+                    <div class="col-12 col-md-6 mb-4">
+                        <label for="expiration">Fecha de expiración</label>
+                        <input type="text" id="expiration" class="form-control" placeholder="MM / AA" required="true">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="cvc">CVC</label>
+                        <input type="text" id="cvc" class="form-control" required="true">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock form %}
