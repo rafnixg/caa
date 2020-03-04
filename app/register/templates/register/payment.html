@@ -4,8 +4,8 @@
 {% block css%}
 <script
    src="https://static.payzen.lat/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
-   kr-public-key="{{payzen_public_key}}"
-   kr-post-url-success="/payment">
+   kr-public-key="75075822:testpublickey_OMwS9yDljeEEccvP5C19Bw5LpGUqA1Bssw0LFTjig2HCZ"
+   kr-post-url-success="/register/payment">
 </script>
 
 <link rel="stylesheet"
@@ -69,7 +69,7 @@
             </div>
             <!-- payment form -->
               <div class="kr-embedded"
-               kr-form-token="DEMO-TOKEN-TO-BE-REPLACED">
+               kr-form-token="{{form_token}}">
 
                 <!-- payment form fields -->
                 <div class="kr-pan"></div>
