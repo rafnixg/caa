@@ -13,7 +13,7 @@ from app.register import blueprint
 from flask import render_template, redirect, url_for, request, session
 
 # Import data demo
-from app.register.models import Client, Assistant, Ticket, SaleOrder, Promocode
+from app.register.models import Client, Assistant, Ticket, SaleOrder  # Promocode
 
 from app.register.forms import ClientForm
 
