@@ -1,6 +1,6 @@
 {% extends "web/layout.html" %}
 
-{% block title %} Dashboard {% endblock %}
+{% block title %} {{title}} {% endblock %}
 
 {% block content %}
 <section class="home">
@@ -169,7 +169,7 @@
     </section>
     <section class="inversion mb-5">
         <div class="container pb-4">
-            <h2 class="twilight-blue-title mb-0">Inversión</h2>
+            <h2 class="twilight-blue-title mb-0">Inversión*</h2>
         </div>
         <div class="data-container mx-lg-5">
             <div class="m-auto">
@@ -189,6 +189,8 @@
                         {% endfor %}
                     </div>
                 {% endfor %}
+                <br>
+                <p>(*) Precios sin IGV</p>
             </div>
         </div>
     </section>

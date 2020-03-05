@@ -8,14 +8,12 @@ import base64
 import os
 import requests
 import json
-from pprint import pprint
 from app import db
 from app.register import blueprint
 from flask import render_template, redirect, url_for, request, session
 
 # Import data demo
-from app.register.demo import tickets_data
-from app.register.models import Client, Assistant, Ticket
+from app.register.models import Client, Assistant, Ticket, SaleOrder, Promocode
 
 from app.register.forms import ClientForm
 
@@ -30,6 +28,8 @@ def index():
     }
     if request.method == 'POST':
         if form.validate_on_submit():
+            client_id = session.get('client_id')
+
             greeting = request.form.get('greeting')
             first_name = request.form.get('first_name')
             last_name = request.form.get('last_name')
@@ -38,19 +38,29 @@ def index():
             phone = request.form.get('phone')
             email = request.form.get('email')
             address = request.form.get('address')
+            if client_id:
+                client = Client.query.get(client_id)
+                client.greeting = greeting
+                client.first_name = first_name
+                client.last_name = last_name
+                client.company = company
+                client.phone = phone
+                client.position = position
+                client.email = email
+                client.address = address
+            else:
+                client = Client(
+                    greeting=greeting,
+                    first_name=first_name,
+                    last_name=last_name,
+                    company=company,
+                    phone=phone,
+                    position=position,
+                    email=email,
+                    address=address
+                )
 
-            client = Client(
-                greeting=greeting,
-                first_name=first_name,
-                last_name=last_name,
-                company=company,
-                phone=phone,
-                position=position,
-                email=email,
-                address=address
-            )
-
-            db.session.add(client)
+                db.session.add(client)
             db.session.commit()
             session['client_id'] = client.id
             return redirect(url_for('register_blueprint.assistants'))
@@ -80,6 +90,9 @@ def nurse():
 def assistants():
     """Assistant page."""
     client_id = session.get('client_id')
+    if not client_id:
+        return redirect(url_for('register_blueprint.index'))
+
     if request.method == 'POST':
         assistants = _get_list(
             ('greeting[]',
@@ -92,21 +105,21 @@ def assistants():
              'address[]'))
 
         for assistant in assistants:
-            assis = Assistant(
-                greeting=assistant['greeting'],
-                first_name=assistant['first_name'],
-                last_name=assistant['last_name'],
-                company=assistant['company'],
-                phone=assistant['phone'],
-                position=assistant['position'],
-                email=assistant['email'],
-                address=assistant['address'],
-                client_id=client_id
-            )
-            db.session.add(assis)
-            db.session.commit()
+            if assistant['email']:
+                assis = Assistant(
+                    greeting=assistant['greeting'],
+                    first_name=assistant['first_name'],
+                    last_name=assistant['last_name'],
+                    company=assistant['company'],
+                    phone=assistant['phone'],
+                    position=assistant['position'],
+                    email=assistant['email'],
+                    address=assistant['address'],
+                    client_id=client_id
+                )
+                db.session.add(assis)
+                db.session.commit()
         return redirect(url_for('register_blueprint.tickets'))
-
     data = {
         'title': '6to Foro latinoamericano',
         'client_id': client_id
@@ -118,10 +131,12 @@ def assistants():
 @blueprint.route('/tickets', methods=['GET', 'POST'])
 def tickets():
     """Ticket page."""
+    client_id = session.get('client_id')
+    if not client_id:
+        return redirect(url_for('register_blueprint.index'))
     tickets = Ticket.query.all()
 
     if request.method == 'GET':
-        client_id = session.get('client_id')
         assistants = Assistant.query.filter(Assistant.client_id == client_id)
         data = {
             'title': '6to Foro latinoamericano',
@@ -142,8 +157,10 @@ def tickets():
 @blueprint.route('/info', methods=['GET', 'POST'])
 def info():
     """Info page."""
+    client_id = session.get('client_id')
+    if not client_id:
+        return redirect(url_for('register_blueprint.index'))
     if request.method == 'GET':
-        client_id = session.get('client_id')
         assistants = Assistant.query.filter(Assistant.client_id == client_id)
         data = {
             'title': '6to Foro latinoamericano',
@@ -167,48 +184,83 @@ def payment():
     """Payment page."""
     client_id = session.get('client_id')
     if request.method == 'GET':
-        if client_id:
-            # Payzen init
-            username = os.getenv('PAYZEN_USERNAME')
-            password = os.getenv('PAYZEN_PASSWORD')
-            base_url = os.getenv('PAYZEN_URL')
-            public_key = os.getenv('PAYZEN_PUBLIC_KEY')
-            base64string = base64.encodebytes(('%s:%s' % (username, password)).encode('utf8')).decode('utf8').replace('\n', '')  # noqa
-            headers = {
-                'content-type': 'application/json',
-                'Authorization': 'Basic {}'.format(base64string)
+        if not client_id:
+            return redirect(url_for('register_blueprint.index'))
+
+        client = Client.query.get(int(client_id))
+        promocode = request.args.get('promocode')
+        # Payzen init
+        username = os.getenv('PAYZEN_USERNAME')
+        password = os.getenv('PAYZEN_PASSWORD')
+        base_url = os.getenv('PAYZEN_URL')
+        public_key = os.getenv('PAYZEN_PUBLIC_KEY')
+        url = "{}{}".format(base_url, 'Charge/CreatePayment')
+        authorization = base64.encodebytes(('%s:%s' % (username, password)).encode('utf8')).decode('utf8').replace('\n', '')  # noqa
+        headers = {
+            'content-type': 'application/json',
+            'Authorization': 'Basic {}'.format(authorization)
+        }
+        tickets_price_total = client.ticket_price_total()
+        if promocode == 'CongresoCirugia':
+            percent = 0.8
+            tickets_price_total = tickets_price_total * percent
+        # Data
+        payload = {
+            "amount": int(tickets_price_total * 100),
+            "currency": "PEN",
+            "orderId": "OV-{0:04}".format(client_id),  # noqa reverse int(orderId.split('OV-')[1])
+            "customer": {
+                "email": client.email,
+                "reference": client_id,
             }
-            url = "{}{}".format(base_url, 'Charge/CreatePayment')
+        }
+        # Request payzen form
+        r = requests.post(url, data=json.dumps(payload), headers=headers).json()  # noqa
+        print(r)
+        form_token = r['answer']['formToken']
+        tickets_data = client.tickets()
 
-            client = Client.query.get(int(client_id))
+        data = {
+            'title': '6to Foro latinoamericano',
+            'tickets': tickets_data,
+            'ticket_price_total': tickets_price_total,
+            'payzen_public_key': public_key,
+            'form_token': form_token,
+            'promocode': bool(promocode)
+        }
 
-            tickets_price_total = client.ticket_price_total()
+        return render_template('register/payment.html', **data)
 
-            payload = {
-                "amount": 9000,
-                "currency": "PEN",
-                "orderId": "myOrderId-321979",
-                "customer": {
-                    "email": "rafnixg@gmail.com"
-                }
-            }
-            r = requests.post(url, data=json.dumps(payload), headers=headers)
-            formToken = r.json()['answer']['formToken']
-            data = {
-                'title': '6to Foro latinoamericano',
-                'tickets': tickets_data(),
-                'ticket_price_total': tickets_price_total,
-                'payzen_public_key': public_key,
-                'form_token': formToken,
-            }
-
-            return render_template('register/payment.html', **data)
-        else:
-            return redirect(url_for('web_blueprint.index'))
     elif request.method == 'POST':
-        pprint(request.headers)
-        pprint(request.form)
-        return redirect(url_for('web_blueprint.index'))
+        res = json.loads(request.form.get('kr-answer'))
+        if res['orderStatus'] == 'PAID':
+            sale_order = SaleOrder(
+                name=res['orderDetails']['orderId'],
+                promocode='',
+                status=res['orderStatus'],
+                amount_total=res['orderDetails']['orderTotalAmount'],
+                tickets_total=0,
+                ruc='',
+                social_reason='',
+                address='',
+                # payzen_code=res['transactions']['uuid']
+            )
+
+            db.session.add(sale_order)
+            db.session.commit()
+        return redirect(url_for('register_blueprint.done'))
+        # else:
+        #     return redirect(url_for('web_blueprint.index'))
+
+
+@blueprint.route('/done', methods=['GET'])
+def done():
+    """Susscess pages."""
+    data = {
+        'title': '6to Foro latinoamericano',
+    }
+    session.pop('client_id')
+    return render_template('register/done.html', **data)
 
 
 def _get_list(headers):

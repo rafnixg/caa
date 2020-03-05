@@ -794,7 +794,7 @@ footer {
   padding-right: 1rem;
   text-align: center;
   align-items: center;
-  background-image: url("../img/backgrounds/home.jpg");
+  background-image: url("../img/backgrounds/home.png");
   background-color: rgba(23, 23, 23, 0.27);
   color: #ffffff; }
   .home .main .main-text {
@@ -1016,7 +1016,7 @@ footer {
       margin-bottom: 1rem; }
 
 .expositors .background {
-  background-image: url("../img/backgrounds/expositors.jpg"); }
+  background-image: url("../img/backgrounds/expositors.png"); }
 
 .expositors .guests {
   position: relative;
@@ -1131,7 +1131,7 @@ footer {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      background-image: url("../img/backgrounds/hotel-marriot.jpg");
+      background-image: url("../img/backgrounds/hotel-westin.png");
       color: #ffffff; }
       .stay .accommodation .hotels .hotel-marriot .name {
         font-family: Axia;
@@ -1347,7 +1347,7 @@ footer {
       border-color: #6f6f6f; }
 
 .papers .background {
-  background-image: url("../img/backgrounds/schedule.jpg"); }
+  background-image: url("../img/backgrounds/papers.png"); }
 
 .papers .diary {
   position: relative;

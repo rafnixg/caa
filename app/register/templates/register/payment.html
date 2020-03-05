@@ -18,70 +18,78 @@
 {% block form %}
 <div class="tab-pane fade active show" id="payment" role="tabpanel" aria-labelledby="payment-tab">
     <div class="row">
-        <div class="col-12 col-lg-4 mb-5">
-            <p class="fw-bold fs-30 fc-twilight-blue">
-                Método de pago
-            </p>
-            <ul class="payment-methods text-center">
-                <li class="payment-method">
-                    <img src="/static/web/assets/img/icon/credit-card.svg" alt="Tarjeta de crédito">
-                    <p class="fs-14 mt-3">Tarjeta de crédito</p>
-                </li>
-            </ul>
-        </div>
-        <div class="col-12 col-lg-8">
-            <div class="row">
+        <div class="col-12">
+            <div class="row mb-5">
                 <div class="col-12">
                     <div class="tickets-head">
                         <p class="text">
-                            Tus entradas <span>{{ tickets | length }}</span>
+                            Tus entradas <span style="color:#fff;">{{ tickets | length }}</span>
                         </p>
                         <div class="line"></div>
                         <p class="price">{{ ticket_price_total }} /.s</p>
                     </div>
                 </div>
-                {% for ticket in tickets %}
-                    <div class="col-12 col-md-6 mb-5">
-                        <div class="ticket">
-                            <div class="text-center mr-4">
-                                {% for date in ticket.dates %}
-                                    <p class="fw-extra-light fs-27">{{date}}</p>
-                                {% endfor%}
-                                <p class="fw-extra-light fs-14">NOV</p>
-                            </div>
-                            <div>
-                                <p class="fw-medium fs-14 fc-twilight-blue">
-                                    6th Latin American Forum on <br>
-                                    Quality and Safety in Healthcare
-                                </p>
-                                <p class="fw-medium fs-12 fc-grey-b mt-4">
-                                    {{ ticket.service }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <p class="fw-medium fs-14 fc-light-grey mt-5">
-                                {{ ticket.name }}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- payment form -->
-              <div class="kr-embedded"
-               kr-form-token="{{form_token}}">
 
+                <div class="col-12">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Ticket</th>
+                          {# <th scope="col">Cantidad</th> #}
+                          <th scope="col">Precio</th>
+                          {# <th scope="col">Total</th> #}
+                        </tr>
+                      </thead>
+                      <tbody>
+                    {% for ticket in tickets %}
+                        <tr>
+                          <th scope="row">{{loop.index}}</th>
+                          <td>{{ticket.name}}</td>
+                          {# <td>{{ 1 }}</td> #}
+                          <td>{{ticket.price}}</td>
+                          {# <td>{{ticket.price * 1}}</td> #}
+                        </tr>
+                    {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <p class="fw-bold fs-20 fc-twilight-blue">
+                        Promocode
+                    </p>
+                        {% if promocode == False %}
+                            <form name='promocodeForm' method="GET" action="{{url_for('register_blueprint.payment')}}" class="col-8 mt-3 p-0">
+                                <input class="form-control" type="text" name='promocode' placeholder="Promocode" />
+                                <button type="submit" class="form-control dark mt-3">Validar</button>
+                            </form>
+                        {% endif %}
+                </div>
+
+            <!-- payment form -->
+            <div class="col-12 col-lg-8">
+
+                <p class="fw-bold fs-20 fc-twilight-blue text-center mb-3">
+                        Formulario de pago
+                    </p>
+              <div class="kr-embedded "
+               kr-form-token="{{form_token}}" style="margin:0 auto;width:300px;text-align:center;">
                 <!-- payment form fields -->
                 <div class="kr-pan"></div>
                 <div class="kr-expiry"></div>
                 <div class="kr-security-code"></div>
 
                 <!-- payment form submit button -->
-                <button class="kr-payment-button"></button>
+                <button class="kr-payment-button" style="width:100%;"></button>
 
                 <!-- error zone -->
                 <div class="kr-form-error"></div>
               </div>
+            </div>
+            </div>
         </div>
     </div>
 

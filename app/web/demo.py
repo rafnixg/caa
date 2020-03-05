@@ -22,9 +22,9 @@ def sponsors_demo():
         [],
         # Lead
         [
-            {'name': 'GE Healthcare', 'src': 'img/sponsors/GE.png'},
-            {'name': 'Philips', 'src': 'img/sponsors/PHILIPS.png'},
-            {'name': 'SynLab', 'src': 'img/sponsors/SYNLAB.png'},
+            {'name': 'GE Healthcare', 'src': 'img/sponsors/ge.png'},
+            {'name': 'Philips', 'src': 'img/sponsors/philips.png'},
+            {'name': 'SynLab', 'src': 'img/sponsors/synlab.png'},
         ],
         # Premium
         [
@@ -32,8 +32,8 @@ def sponsors_demo():
         ],
         # Gold
         [
-            {'name': 'Dedalus', 'src': 'img/sponsors/DEDALUS.png'},
-            {'name': 'Ricoh', 'src': 'img/sponsors/RICOH.png'},
+            {'name': 'Dedalus', 'src': 'img/sponsors/dedalus.png'},
+            {'name': 'Ricoh', 'src': 'img/sponsors/ricoh.png'},
         ],
         # Silver
         [],
@@ -143,6 +143,7 @@ def expositors_demo():
         'tab': 'keynote',
         'data': [
             [{
+                'id': 1,
                 'firstName': 'Christine',
                 'lastName': 'Porath',
                 'position': 'Autora de Mastering Civility',
@@ -155,9 +156,10 @@ def expositors_demo():
                 'full_description': 'Es profesora titular en la McDonough School of Business de la Universidad de Georgetown y es fundadora de una compañía que ayuda a crear un lugar de trabajo más humano donde los empleados puedan desarrollarse.'  # noqa
             },
             {
+                'id': 2,
                 'firstName': 'Pedro',
                 'lastName': 'Delgado',
-                'position': 'Vice Presitende Netflix',
+                'position': 'Head of Latin America Region, IHI',
                 'img_bio': 'img/expositors/pd_bio.png',
                 'img_home': 'img/expositors/pd_home.png',
                 'facebook': '#',
@@ -167,9 +169,10 @@ def expositors_demo():
                 'full_description': 'MSc, Head of Europe and Latin America, Institute for Healthcare Improvement (IHI), has a unique ability to work across cultures, languages, and systems. Based in the United Kingdom, he has been a driving force in IHI’s global strategy. From work on reducing C-sections in Brazil, to improving early years education in Chile, to improving patient safety in Portugal and mental health in London, Mr. Delgado has led the key senior relationships and design and implementation of large-scale health system improvement efforts and networks globally. He coaches senior leaders and teams, and lectures extensively worldwide on large-scale change, patient safety, and quality improvement. During his time at IHI, he also facilitated the Quality and Innovation Centers network, which included Kaiser Permanente’s Performance Improvement Institute, Qualturum in Jönköping County (Sweden), and the James Anderson Center for Clinical Excellence at Cincinnati Children’s Hospital. His background is rich in diversity, including a brief period as a professional football (soccer) player, roles in hospital management and large-scale improvement leadership in the UK, and experience working in mental health in Venezuela and the UK. He holds summa cum laude degrees in Psychology and in Global Business, and an MSc in Healthcare Management and Leadership.'  # noqa
             },
             {
-                'firstName': 'Donald M.',
-                'lastName': 'Berwick',
-                'position': 'Vice Presitende Netflix',
+                'id': 3,
+                'firstName': 'Donald M. Berwick,',
+                'lastName': ' MD, MPP, FRCP',
+                'position': 'President Emeritus, IHI',
                 'img_bio': 'img/expositors/db_bio.png',
                 'img_home': 'img/expositors/db_home.png',
                 'facebook': '#',
@@ -180,30 +183,20 @@ def expositors_demo():
             },
             ],
             [{
-                'firstName': 'Paulo',
-                'lastName': 'Borem',
-                'position': 'Vice Presitende Netflix',
-                'img_bio': '',
-                'img_home': '',
+                'id': 4,
+                'firstName': 'Gonzalo Garrido',
+                'lastName': 'Lecca',
+                'position': 'President, Clinica Anglo Americana',
+                'img_bio': 'img/expositors/gg_bio.png',
+                'img_home': 'img/expositors/gg_home.png',
                 'facebook': '#',
                 'twitter': '#',
                 'instagram': '#',
-                'description': 'MD, is a Senior Director and Improvement Advisor (IA) at the Institute for Healthcare Improvement (IHI), as well as a certified Patient Safety Officer (PSO) and Vascular Surgeon by clinical training.',  # noqa
-                'full_description': 'MD, is a Senior Director and Improvement Advisor (IA) at the Institute for Healthcare Improvement (IHI), as well as a certified Patient Safety Officer (PSO) and Vascular Surgeon by clinical training. Dr. Borem leads IHI’s large-scale improvement initiatives in Portugal (the STOP Infecao Hospitalar initiative halved hospital acquired infection rates in 36 months across 19 public hospitals) and in Brazil (the Parto Adequado initiative aims to significantly increase the percentage of vaginal births across 117 maternities; the Saude em Nossas Maos initiative aims to halve hospital acquired infections in 119 public hospital ICU’s; and the Collaborative Sepsis ACSC, initiative aims to reduce sepsis mortality across 12 emergency departments); Collaborative Sepsis PROADI, involving 60 ambulatory unit from public sector health in Brazil and a Collaborative to reduce maternal mortality in 27 public hospitals also in Brazil. Dr. Borem is also responsible for IHI’s improvement capability programming in Portuguese-speaking countries, primarily the Improvement Science in Action and Improvement Specialist programs in Brazil. Prior to joining IHI, Dr. Borem worked as a consultant in health care reform and quality for World Bank and USAID in India, Argentina, México and Mozambique.'  # noqa
+                'description': '',  # noqa
+                'full_description': ''  # noqa
             },
             {
-                'firstName': 'Jafet',
-                'lastName': 'Arrieta',
-                'position': 'Vice Presitende Netflix',
-                'img_bio': '',
-                'img_home': '',
-                'facebook': '#',
-                'twitter': '#',
-                'instagram': '#',
-                'description': 'Jafet Arrieta currently serves as Director and Improvement Advisor for the Institute for Healthcare Improvement (IHI)',  # noqa
-                'full_description': 'Jafet Arrieta currently serves as Director and Improvement Advisor for the Institute for Healthcare Improvement (IHI). In her role, she supports domestic and international partners in the development and implementation of large-scale quality improvement projects, teaches quality improvement methods and provides strategic guidance and coaching to leaders, managers and team members. \n Jafet has extensive experience in operational, oversight, management and leadership roles within the areas of public health, quality improvement and health systems strengthening across different low-, middle-, and high-resource settings. Jafet is an affiliate member of Ariadne Labs, and has previously served as Improvement Advisor for the Latin American Consortium for Innovation, Quality and Safety in Healthcare (CLICSS) leading the implementation of two multi-country quality improvement collaboratives aimed at reducing the incidence of healthcare-associated infections in Latin America, and as Director of Operations for Partners In Health Mexico, helping establish a public-private partnership and leading the execution of a health system strengthening strategy to improve access to high quality care in one of the most underserved regions of Mexico.'  # noqa
-            },
-            {
+                'id': 5,
                 'firstName': '',
                 'lastName': '',
                 'position': '',
@@ -214,13 +207,65 @@ def expositors_demo():
                 'instagram': '',
                 'description': '',  # noqa
                 'full_description': ''  # noqa
-            }
-            ]
+            },
+            {
+                'id': 6,
+                'firstName': '',
+                'lastName': '',
+                'position': '',
+                'img_bio': '',
+                'img_home': '',
+                'facebook': '',
+                'twitter': '',
+                'instagram': '',
+                'description': '',  # noqa
+                'full_description': ''  # noqa
+            },
+            ],
         ]
         },
         {
         'tab': 'speaker',
         'data': [
+            [{
+                'id': 7,
+                'firstName': 'Paulo',
+                'lastName': 'Borem',
+                'position': 'Director of Latin America Region, IHI',
+                'img_bio': 'img/expositors/pb_bio.png',
+                'img_home': '',
+                'facebook': '#',
+                'twitter': '#',
+                'instagram': '#',
+                'description': 'MD, is a Senior Director and Improvement Advisor (IA) at the Institute for Healthcare Improvement (IHI), as well as a certified Patient Safety Officer (PSO) and Vascular Surgeon by clinical training.',  # noqa
+                'full_description': 'MD, is a Senior Director and Improvement Advisor (IA) at the Institute for Healthcare Improvement (IHI), as well as a certified Patient Safety Officer (PSO) and Vascular Surgeon by clinical training. Dr. Borem leads IHI’s large-scale improvement initiatives in Portugal (the STOP Infecao Hospitalar initiative halved hospital acquired infection rates in 36 months across 19 public hospitals) and in Brazil (the Parto Adequado initiative aims to significantly increase the percentage of vaginal births across 117 maternities; the Saude em Nossas Maos initiative aims to halve hospital acquired infections in 119 public hospital ICU’s; and the Collaborative Sepsis ACSC, initiative aims to reduce sepsis mortality across 12 emergency departments); Collaborative Sepsis PROADI, involving 60 ambulatory unit from public sector health in Brazil and a Collaborative to reduce maternal mortality in 27 public hospitals also in Brazil. Dr. Borem is also responsible for IHI’s improvement capability programming in Portuguese-speaking countries, primarily the Improvement Science in Action and Improvement Specialist programs in Brazil. Prior to joining IHI, Dr. Borem worked as a consultant in health care reform and quality for World Bank and USAID in India, Argentina, México and Mozambique.'  # noqa
+            },
+            {
+                'id': 8,
+                'firstName': 'Jafet',
+                'lastName': 'Arrieta',
+                'position': 'Director of Latin America Region, IHI',
+                'img_bio': 'img/expositors/ja_bio.png',
+                'img_home': '',
+                'facebook': '#',
+                'twitter': '#',
+                'instagram': '#',
+                'description': 'Jafet Arrieta currently serves as Director and Improvement Advisor for the Institute for Healthcare Improvement (IHI)',  # noqa
+                'full_description': 'Jafet Arrieta currently serves as Director and Improvement Advisor for the Institute for Healthcare Improvement (IHI). In her role, she supports domestic and international partners in the development and implementation of large-scale quality improvement projects, teaches quality improvement methods and provides strategic guidance and coaching to leaders, managers and team members. \n Jafet has extensive experience in operational, oversight, management and leadership roles within the areas of public health, quality improvement and health systems strengthening across different low-, middle-, and high-resource settings. Jafet is an affiliate member of Ariadne Labs, and has previously served as Improvement Advisor for the Latin American Consortium for Innovation, Quality and Safety in Healthcare (CLICSS) leading the implementation of two multi-country quality improvement collaboratives aimed at reducing the incidence of healthcare-associated infections in Latin America, and as Director of Operations for Partners In Health Mexico, helping establish a public-private partnership and leading the execution of a health system strengthening strategy to improve access to high quality care in one of the most underserved regions of Mexico.'  # noqa
+            },
+            {
+                'id': 9,
+                'firstName': '',
+                'lastName': '',
+                'position': '',
+                'img_bio': '',
+                'img_home': '',
+                'facebook': '',
+                'twitter': '',
+                'instagram': '',
+                'description': '',  # noqa
+                'full_description': ''  # noqa
+            }]
             # [{
             #     'firstName': 'Brent',
             #     'lastName': 'Ray',
@@ -447,7 +492,7 @@ def inversion_demo():
             'Preforo <br> <strong>28/09</strong>',
             'Foro Día 1/Día 2 <br> <strong>29/09 - 30/09</strong>',
             'Preforo <br> + Foro Día 1/Día 2 <br> <strong>28/09 - 30/09</strong>',
-            'Precios de <br> preventa <br> <strong>Hasta el 5 de julio</strong>',
+            # 'Precios de <br> preventa <br> <strong>Hasta el 5 de julio</strong>',
             'Precios regulares <br> <strong>a partir del 6 de <br> abril</strong>'
         ],
         'body': [
@@ -456,32 +501,32 @@ def inversion_demo():
                 'preforo': 'Acceso al minicurso <br> full day',
                 'foro': 'Acceso a Sala Plenaria <br> + Salas Paralelas',
                 'preforoAndForo': 'Acceso al minicurso <br> + Sala Plenaria <br> + Salas Paralelas',  # noqa
-                'preSale': '30 USD',
-                'price': '40 USD'
+                # 'preSale': '30 USD',
+                'price': '513 USD'
             },
             {
                 'ticket': 'Enfermera(o)',
                 'preforo': 'Acceso al minicurso <br> full day',
                 'foro': 'Acceso a Sala Plenaria <br> + Salas Paralelas',
                 'preforoAndForo': 'Acceso al minicurso <br> + Sala Plenaria <br> + Salas Paralelas',  # noqa
-                'preSale': '40 USD',
-                'price': '50 USD'
+                # 'preSale': '40 USD',
+                'price': '308 USD'
             },
             {
                 'ticket': 'Estudiante',
                 'preforo': 'Acceso al minicurso <br> full day',
                 'foro': 'Acceso a Sala Plenaria <br> + Salas Paralelas',
                 'preforoAndForo': 'Acceso al minicurso <br> + Sala Plenaria <br> + Salas Paralelas',  # noqa
-                'preSale': '50 USD',
-                'price': '60 USD'
+                # 'preSale': '50 USD',
+                'price': '308 USD'
             },
             {
                 'ticket': 'Corporativo',
                 'preforo': 'Acceso al minicurso <br> full day',
                 'foro': 'Acceso a Sala Plenaria <br> + Salas Paralelas',
                 'preforoAndForo': 'Acceso al minicurso <br> + Sala Plenaria <br> + Salas Paralelas',  # noqa
-                'preSale': '80 USD',
-                'price': '100 USD'
+                # 'preSale': '80 USD',
+                'price': '369 USD'
             }
         ]
     }
